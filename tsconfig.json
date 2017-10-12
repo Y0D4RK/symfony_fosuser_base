@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "module": "es6", 
+    "target": "es6", 
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true, 
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "noImplicitAny": false,
+    "pretty": true,
+    "lib": [
+      "dom",
+      "es5",
+      "es2015",
+      "es2015.promise"
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "@src/*": ["./*"],
+      "@components": ["./components/components/index.ts"],
+      "@views": ["./components/views/index.ts"],
+      "@utils": ["./utils/index.ts"],
+      "@store": ["./store/index.ts"]
+    },
+    "sourceMap": true, 
+    "allowJs": true,
+    "skipLibCheck": true,
+    "jsx": "react",
+    "jsxFactory": "h"
+  },
+  "exclude": [
+    "typings/browser.d.ts",
+    "typings/browser",
+    "node_modules" 
+  ],
+  "compileOnSave": true
+}
