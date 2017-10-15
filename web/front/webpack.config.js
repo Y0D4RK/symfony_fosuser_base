@@ -15,7 +15,7 @@ module.exports = {
   },
   resolve: {
     extensions: [
-      '.d.ts', '.ts', '.js', '.vue', '.json'
+      '.d.ts', '.ts', '.js', '.vue', '.json', '.scss'
     ],
     modules: [
       'src', 'node_modules'
@@ -23,6 +23,8 @@ module.exports = {
     alias: {
       '@components': path.resolve('src/components/components/index.ts'),
       '@src': path.resolve('src'),
+      '@icons': path.resolve('src/assets/icons'),
+      '@images': path.resolve('src/assets/images'),      
       '@views': path.resolve('src/components/views/index.ts'),
       '@utils': path.resolve('src/utils/index.ts'),
       '@store': path.resolve('src/store/index.ts'),

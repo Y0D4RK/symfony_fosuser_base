@@ -1,17 +1,17 @@
 // Couleurs
+$mainRed: #E54C4C;
+
 $yellow1: #f4af00;
 $yellow2: #D99E7E;
 
 $blue1: #4286f4;
 $blue2: #63d4ff;
 
-$red1: #e85151;
+$red1: #E54C4C;
 
 $green1: #5cb85c;
 $green2: #CEE8DF;
 $green3: #70BEB1;
-
-$mainBack: darken(#373F46, 10%);
 
 
 $w255: rgb(255, 255, 255);
@@ -34,10 +34,6 @@ $w120: rgb(120, 120, 120);
 $w110: rgb(110, 110, 110);
 $w100: rgb(100, 100, 100);
 
-
-
-
-
 $g90: rgb(90, 90, 90);
 $g80: rgb(80, 80, 80);
 $g70: rgb(70, 70, 70);
@@ -49,9 +45,10 @@ $g20: rgb(20, 20, 20);
 $g10: rgb(10, 10, 10);
 $g0: rgb(0, 0, 0);
 
-$ombre: rgba(0,0,0,0.3);
-
+$ombre: rgba(20,20,20,0.2);
 $mainColor: $g90;
+
+
 $mainFont: 'Arial, sans-serif';
 
 $mini: "(max-width: 1000px)";
@@ -62,9 +59,8 @@ $Loadersize: 20px;
 
 //tailles
 
-$headerHeight: 50px;
+$headerHeight: 60px;
 $headerColor: #373F46;
-$headerWidth: 220px;
 
 
 $boutonfont: 14px;

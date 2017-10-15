@@ -19,6 +19,8 @@
     "paths": {
       "@src/*": ["./*"],
       "@components": ["./components/components/index.ts"],
+      "@images/*": ["./assets/images/*"],
+      "@icons/*": ["./assets/icons/*"],
       "@views": ["./components/views/index.ts"],
       "@utils": ["./utils/index.ts"],
       "@store": ["./store/index.ts"]

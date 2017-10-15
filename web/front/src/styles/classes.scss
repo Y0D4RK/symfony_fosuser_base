@@ -99,13 +99,13 @@ ul#alertsContainer{
   cursor: pointer;
 
   &.form-valid{
-    background-image: url('../assets/form-valid-green.svg');
+    background-image: url('~@icons/form-valid-green.svg');
   }
   &.form-invalid{
-    background-image: url('../assets/form-invalid-red.svg');
+    background-image: url('~@icons/form-invalid-red.svg');
   }
   &.form-required{
-    background-image: url('../assets/form-required.svg');
+    background-image: url('~@icons/form-required.svg');
     height: 15px;
     width: 15px;
     &:hover:after{
