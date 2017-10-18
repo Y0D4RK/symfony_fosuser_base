@@ -18,7 +18,6 @@ import { Types } from '@utils';
 
 @Component({
   name: 'Home',
-  components: []
 })
 export default class Home extends Vue {
 
@@ -32,5 +31,3 @@ export default class Home extends Vue {
 <style lang="scss" scoped>
 
 </style>
-
-

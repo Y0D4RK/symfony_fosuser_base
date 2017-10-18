@@ -5,10 +5,17 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "type": "extensionHost",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${file}"
+      "name": "Launch Extension",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/out/**/*.js"
+      ],
+      "preLaunchTask": "npm"
     }
   ]
 }

@@ -22,11 +22,13 @@ import Component from 'vue-class-component';
 import { Prop, Watch } from 'vue-property-decorator';
 
 import { Filters } from '@utils';
-import * as Components from '@components';
+import { SvgIcon } from '@components';
 
 
 @Component({
-  components: [Components.SvgIcon],
+  components: {
+    SvgIcon
+  },
   filters: {
     "uppercase": Filters.uppercase
   }

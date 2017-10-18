@@ -48,7 +48,6 @@ import { required } from 'vuelidate/lib/validators';
 import { Vuelidate } from 'vuelidate';
 
 import { Filters } from '@utils';
-import Store from '@store';
 import { SvgIcon } from '@components';
 
 
@@ -58,7 +57,7 @@ interface IStarValidate {
 
 @Component({
   name: 'StarRating',
-  components: [SvgIcon],
+  components: {SvgIcon},
   validations: {
     filled: {
       required: required
