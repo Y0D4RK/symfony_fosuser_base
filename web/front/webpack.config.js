@@ -27,6 +27,7 @@ module.exports = {
       '@images': path.resolve('src/assets/images'),      
       '@views': path.resolve('src/components/views/index.ts'),
       '@utils': path.resolve('src/utils/index.ts'),
+      '@types': path.resolve('src/typings/index.ts'),
       '@store': path.resolve('src/store/index.ts'),
     }
   },
@@ -66,10 +67,10 @@ module.exports = {
         loaders: ['style-loader', 'css-loader?', 'postcss-loader', 'sass-loader']
       }, {
         test: /\.(jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-        use: 'base64-inline-loader?limit=1000&name=[name].[ext]'
+        use: 'base64-inline-loader?name=[name].[ext]'
       }, {
         test: /\.(eot|ttf|woff|woff2)$/,
-        loader: 'file-loader?name=src/assets/fonts/[name].[ext]'
+        loader: 'file-loader?limit=2000&name=src/assets/fonts/[name].[ext]'
       }
     ]
   },

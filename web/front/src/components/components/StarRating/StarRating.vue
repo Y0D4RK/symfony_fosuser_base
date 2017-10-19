@@ -48,7 +48,6 @@ import { required } from 'vuelidate/lib/validators';
 import { Vuelidate } from 'vuelidate';
 
 import { Filters } from '@utils';
-import { SvgIcon } from '@components';
 
 
 interface IStarValidate {
@@ -57,7 +56,6 @@ interface IStarValidate {
 
 @Component({
   name: 'StarRating',
-  components: {SvgIcon},
   validations: {
     filled: {
       required: required
@@ -115,8 +113,8 @@ export default class StarRating extends Vue {
       this.starModel = value;
       this.rating = value;
       this.$emit('onSelectResult', { note: value });
-    } 
-    else{
+    }
+    else {
       this.hoverStar = false;
       this.hoverCount = value;
       this.rating = value;

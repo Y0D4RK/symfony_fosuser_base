@@ -23,13 +23,14 @@
       "@icons/*": ["./assets/icons/*"],
       "@views": ["./components/views/index.ts"],
       "@utils": ["./utils/index.ts"],
+      "@types": ["./typings/index.ts"],
       "@store": ["./store/index.ts"]
     },
     "sourceMap": true, 
     "allowJs": true,
     "skipLibCheck": true,
     "jsx": "react",
-    "jsxFactory": "h"
+    "jsxFactory": "h",
   },
   "exclude": [
     "typings/browser.d.ts",

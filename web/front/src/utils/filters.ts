@@ -6,7 +6,6 @@ export namespace Filters {
 
   export const capitalize =  (value: string): string => {
     if (!value && typeof value !== 'string') {
-      console.warn('Capitalize filter can only accept strings') 
       return '';
     };
     let newValue = value.toString();
@@ -15,10 +14,17 @@ export namespace Filters {
 
   export const uppercase =  (value: string): string => {
     if (!value && typeof value !== 'string') {
-      console.warn('Uppercase filter can only accept strings') 
       return '';
     };
     let newValue = value.toString();
     return newValue.toUpperCase();
+  }
+
+  export const lowercase =  (value: string): string => {
+    if (!value && typeof value !== 'string') {
+      return '';
+    };
+    let newValue = value.toString();
+    return newValue.toLowerCase();
   }
 }
