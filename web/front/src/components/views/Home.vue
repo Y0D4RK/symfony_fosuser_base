@@ -31,7 +31,7 @@ export default class Home extends Vue {
 
 section{
   display: flex;
-  height: 600px;
+  height: 500px;
   background-image: url('~@images/home_image.jpg');
   @include bg-center;
 }

@@ -21,7 +21,7 @@ declare module "vuelidate" {
   /**
    * Represents an instance of validator class at runtime
   */
-  interface IValidator {
+  export interface IValidator {
     /**
      * Indicates the state of validation for given model. becomes true when any of it's child validators specified in options returns a falsy value. In case of validation groups, all grouped validators are considered.
     */

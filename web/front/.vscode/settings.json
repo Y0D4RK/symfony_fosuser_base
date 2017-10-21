@@ -22,4 +22,24 @@
   "html.suggest.angular1": false,
   "html.suggest.ionic": false,
   "typescript.tsdk": "node_modules/typescript/lib"
+  
+
+  // {
+  //   "scope": "entity.name.tag.css",
+  //   "settings": {
+  //     "foreground": "#cf7676"
+  //   }
+  // },
+  // {
+  //   "scope": "meta.directive.vue entity.other.attribute-name.html",
+  //   "settings": {
+  //     "foreground": "#4EC9B0"
+  //   }
+  // },
+  // {
+  //   "scope": "entity.other.attribute-name.html",
+  //   "settings": {
+  //     "foreground": "#DCDCAA"
+  //   }
+  // }
 }

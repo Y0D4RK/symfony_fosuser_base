@@ -29,6 +29,7 @@
     "no-debugger": true,
     "interface-name": false,
     "prefer-const": false,
+    "no-var-requires": false,
     "no-duplicate-key": true,
     "no-duplicate-variable": true,
     "arrow-parens": false,

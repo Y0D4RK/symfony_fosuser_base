@@ -5,6 +5,7 @@ export interface LoginState {
   isLoggedIn: boolean,
   isAdmin: boolean,
   status: MovingStatus,
+  showModal: boolean,
   reset: () => void
 }
 

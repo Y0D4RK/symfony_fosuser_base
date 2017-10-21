@@ -1,34 +1,39 @@
 <template>
-  <header>
-    <router-link to='/' class='logo'>
-      <img src="~@images/slice1.svg" alt="">
-    </router-link>
-    <nav>
-      <ul class='nav-list'>
-        <router-link :to='item.link' v-for="item in nav" :key='item.name'>
-          <li class='route' :class='{active: $route.name == item.name}' :size='26'>
-            <span>{{item.title}}</span>
-          </li>
+  <div class='header-wrapper'>
+    <header>
+      <nav>
+        <router-link to='/' class='logo'>
+          <img src="~@images/slice1.svg" alt="">
         </router-link>
-      </ul>
-      <ul class='login-list'>
-        <template v-if='login.isLoggedIn'>
+        <ul class='nav-list'>
+          <router-link :to='item.link' v-for="item in nav" :key='item.name'>
+            <li class='route' :class='{active: $route.name == item.name}' :size='26'>
+              <span>{{item.title}}</span>
+            </li>
+          </router-link>
+        </ul>
+        <ul class='login-list'>
+          <template v-if='login.isLoggedIn'>
 
-        </template>
-        <template v-else>
-          <li class="header-button color">
-            Devenir déménageur
-          </li>
-          <li class="header-button">
-            Connexion
-          </li>
-          <li class="header-button">
-            Inscription
-          </li>
-        </template>
-      </ul>
-    </nav>
-  </header>
+          </template>
+          <template v-else>
+            <li class="header-button color">
+              Devenir déménageur
+            </li>
+            <li class="header-button" @click='showConnexion()'>
+              Connexion
+            </li>
+            <li class="header-button">
+              Inscription
+            </li>
+          </template>
+        </ul>
+      </nav>
+    </header>
+  
+  <Connexion :show='ConnexionState' @close='closeConnexion()'></Connexion>
+
+  </div>
 </template>
 
 <script lang="ts">
@@ -38,10 +43,11 @@ import { Prop, Watch } from "vue-property-decorator";
 import { State, Action, Getter, Mutation, namespace } from "vuex-class";
 
 import { Filters } from "@utils";
-import { SvgIcon } from "@components";
+import { SvgIcon, Connexion, test } from "@components";
 
 @Component({
-  components: { SvgIcon },
+  name: "HeaderComponent",
+  components: { Connexion, test },
   filters: {
     uppercase: Filters.uppercase
   }
@@ -49,20 +55,38 @@ import { SvgIcon } from "@components";
 export default class HeaderComponent extends Vue {
   @State login: boolean;
 
+  public ConnexionState: boolean = false;
+
+  showConnexion() {
+    this.ConnexionState = true;
+  }
+
+  closeConnexion() {
+    this.ConnexionState = false;
+  }
+
   public nav = [
     { title: "Je déménage", name: "moving", link: "/moving" },
     { title: "Les déménageurs", name: "movers", link: "/movers" }
   ];
 
-  mounted() {
-    console.log(this.login);
-  }
+  mounted() {}
 }
 </script>
 
 
 
-<style lang='scss'>
+<style lang='scss' scoped>
+
+div.header-wrapper{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+
 header {
   position: fixed;
   top: 0px;
@@ -92,7 +116,7 @@ header {
 
   nav {
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row nowrap;
     flex: 1 1 auto;
 
     ul.nav-list {
@@ -106,7 +130,7 @@ header {
 
         li {
           display: flex;
-          flex-flow: row wrap;
+          flex-flow: row nowrap;
           justify-content: center;
           align-items: center;
           align-content: center;
@@ -138,14 +162,15 @@ header {
 
     ul.login-list {
       display: flex;
-      flex-flow: row wrap;
+      flex-flow: row nowrap;
       flex: 1 0 auto;
       align-self: flex-end;
+      justify-content: flex-end;
       padding: 8px 15px 8px 15px;
 
       li {
         display: flex;
-        flex-flow: row wrap;
+        flex-flow: row nowrap;
         justify-content: center;
         align-items: center;
         align-content: center;
@@ -156,18 +181,17 @@ header {
         border-radius: 3px;
         cursor: pointer;
 
-        &:not(.color):hover{
+        &:not(.color):hover {
           background-color: $w235;
         }
 
-        &.color{
+        &.color {
           background-color: $mainStyle;
           color: white;
-          
-          &:hover{
+
+          &:hover {
             background-color: darken($mainStyle, 2%);
           }
-
         }
       }
     }

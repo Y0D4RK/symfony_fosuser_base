@@ -11,6 +11,7 @@ const state: LoginState = {
   isLoggedIn: false,
   isAdmin: false,
   status: null,
+  showModal: false,
   reset() {
     this.name = null;
     this.surname = null;

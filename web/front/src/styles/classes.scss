@@ -54,9 +54,30 @@ ul#alertsContainer{
 }
 
 
+.input-container{
+  display: flex;
+  flex-direction: row wrap;
+
+  .errorMessage{
+    height: auto;
+    width: 100%;
+    color: $red1;
+    font-size: 13px;
+
+    span{
+      padding: 5px;
+    }
+  }
+  .infoMessage{
+    @extend .errorMessage;
+    color: #ea730b;
+  }
+}
+
+
+
 .input-form {
   position: relative;
-  float: left;
   border: 1px solid $w200;
   background-color: white;
   color: $mainColor;
