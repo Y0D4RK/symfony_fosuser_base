@@ -11,6 +11,10 @@ const glob = require('glob'),
   DefinePlugin = require('webpack/lib/DefinePlugin'),
   env = require('../environment/prod.env');
 
+const extractSass = new ExtractTextPlugin({
+  filename: 'css/[name].[contenthash].css',
+  disable: process.env.NODE_ENV === 'development'
+});
 
 webpackConfig.module.rules = [...webpackConfig.module.rules,
   {
@@ -47,7 +51,7 @@ webpackConfig.module.rules = [...webpackConfig.module.rules,
   }
 ];
 
-webpackConfig.output.filename = "name].[hash].js";
+webpackConfig.output.filename = "[name].[hash].js";
 
 webpackConfig.plugins = [...webpackConfig.plugins,
   extractSass,

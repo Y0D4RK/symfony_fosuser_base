@@ -8,9 +8,9 @@ const path = require('path');
 webpackConfig.module.rules = [...webpackConfig.module.rules,
   {
     test: /\.scss$/,
-    loaders: ['style-loader', 'css-loader?', 'postcss-loader', 'sass-loader']
+    loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
   }, {
-    test: /\.(jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+    test: /\.(jpe?g|png|ttf|eot|svg|ico|woff(2)?)(\?[a-z0-9=&.]+)?$/,
     use: 'base64-inline-loader?limit=1000&name=[name].[ext]'
   }
 ];
@@ -20,13 +20,10 @@ webpackConfig.plugins = [...webpackConfig.plugins,
     inject: true,
     template: helpers.root('/src/index.html'),
     filename: 'index.html'
-    // favicon: path.resolve('/src/assets/favicon.ico')
   }),
   new DefinePlugin({
     'process.env': env
   })
 ];
-
-
 
 module.exports = webpackConfig;

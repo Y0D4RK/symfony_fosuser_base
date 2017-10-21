@@ -1,5 +1,7 @@
 const path = require('path');
-const helpers = require('./helpers')
+const helpers = require('./helpers');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+
 
 let config = {
   entry: {
@@ -19,7 +21,7 @@ let config = {
       '@src': helpers.root('src'),
       '@icons': helpers.root('src/assets/icons'),
       '@images': helpers.root('src/assets/images'),
-      '@fonts': helpers.root('src/fonts'),    
+      '@fonts': helpers.root('src/fonts'),
       '@views': helpers.root('src/components/views/index.ts'),
       '@utils': helpers.root('src/utils/index.ts'),
       '@types': helpers.root('src/typings/index.ts'),
@@ -27,36 +29,52 @@ let config = {
     }
   },
   module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        use: {
-          loader: 'vue-loader',
-          options: {
-            loaders: {
-              scss: ['vue-style-loader', 'css-loader', 'postcss-loader', 'sass-loader', {
-                loader: 'sass-resources-loader',
-                options: {
-                  resources: helpers.root('src/styles/variables.scss'),
-                  esModule: true
-                }
-              }],
-              ts: 'ts-loader',
-            }
+    rules: [{
+      test: /\.vue$/,
+      use: {
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            scss: ['vue-style-loader', 'css-loader', 'postcss-loader', 'sass-loader', {
+              loader: 'sass-resources-loader',
+              options: {
+                resources: helpers.root('src/styles/variables.scss'),
+                esModule: true
+              }
+            }],
+            ts: 'ts-loader',
           }
         }
-      }, {
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        loader: 'ts-loader',
-        options: {
-          appendTsSuffixTo: [/\.vue$/],
-        }
       }
-    ]
+    }, {
+      test: /\.ts$/,
+      exclude: /node_modules/,
+      loader: 'ts-loader',
+      options: {
+        appendTsSuffixTo: [/\.vue$/],
+      }
+    }]
   },
   plugins: [
-
+    new FaviconsWebpackPlugin({
+      logo: helpers.root('src/assets/images/logo_M.svg'),
+      prefix: 'icons-[hash]/',
+      persistentCache: true,
+      inject: true,
+      background: '#fff',
+      icons: {
+        android: false,
+        appleIcon: false,
+        appleStartup: false,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false
+      }
+    })
   ],
   devtool: 'source-map'
 };

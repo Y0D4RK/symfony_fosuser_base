@@ -3,7 +3,7 @@
     <header>
       <nav>
         <router-link to='/' class='logo'>
-          <img src="~@images/slice1.svg" alt="">
+          <img src="~@images/logo_banniere.svg" alt="">
         </router-link>
         <ul class='nav-list'>
           <router-link :to='item.link' v-for="item in nav" :key='item.name'>

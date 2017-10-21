@@ -1,7 +1,6 @@
 # Installation
 
-
-```
+```bash
 $ npm install
 
 # or
@@ -9,6 +8,10 @@ $ npm install
 $ yarn
 ```
 
-### Puis lancer la commande
+### Pour developper
 
-`npm start`
+```npm run dev```
+
+### Pour deployer en prod
+
+```npm run prod```

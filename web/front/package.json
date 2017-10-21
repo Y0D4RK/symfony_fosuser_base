@@ -7,8 +7,9 @@
   "scripts": {
     "dev": "concurrently --kill-others \"npm run server\" \"npm run dev-server\"",
     "server": "nodemon Server.js",
+    "server-prod": "cross-env NODE_ENV=production nodemon Server.js",
     "dev-server": "webpack --watch --hot",
-    "prod": "cross-env NODE_ENV=production npm run clean && npm run build",
+    "prod": "cross-env NODE_ENV=production npm run clean && npm run build && npm run server-prod",
     "clean": "rimraf dist",
     "build": "webpack --config config/webpack.config.prod.js"
   },
