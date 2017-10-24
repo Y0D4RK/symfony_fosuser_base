@@ -1,10 +1,12 @@
-import { GetterTree, MutationTree, ActionTree, Module } from 'vuex';
-import { LoginState } from '@types';
+import { Store, GetterTree, MutationTree, ActionTree, Module } from 'vuex';
+import { ILoginState } from '@types';
 import { RootState } from './index';
-import { Filters, $timeout} from '@utils';
+import { capitalize } from '@filters';
+import { timeout } from '@methods';
+import _ from 'lodash'
 import axios from 'axios'
 
-const state: LoginState = {
+const state: ILoginState = {
   name: null,
   surname: null,
   id: null,
@@ -21,14 +23,15 @@ const state: LoginState = {
   }
 }
 
-const getters: GetterTree<LoginState, RootState> = {
+const getters: GetterTree<ILoginState, RootState> = {
   fullName(state) {
-    return Filters.capitalize(state.surname) + " " + Filters.capitalize(state.name)
+    return capitalize(state.surname) + " " + capitalize(state.name)
   }
 }
 
-const mutations: MutationTree<LoginState> = {
-  connectUser(state, data) {
+const mutations: MutationTree<ILoginState> = {
+  connectUser(state, userData) {
+    state = _.merge(state, userData);
     state.isLoggedIn = true;
   },
   disconnectUser(state, data) {
@@ -36,24 +39,19 @@ const mutations: MutationTree<LoginState> = {
   }
 }
 
-const actions: ActionTree<LoginState, RootState> = {
-  async connexionRequest({commit, rootState}, loginData) {
-    return new Promise( async (resolve, reject) => {
-      // axios.get("", loginData).then(response => {
-      //   resolve();
-      // })
-
-      $timeout(() => {
-        resolve()
-      }, 1000)
-      
-    })
+const actions: ActionTree<ILoginState, RootState> = {
+  async connexionRequest({commit, dispatch, rootState}, loginData) {
+    await timeout(1000);
+    commit('connectUser', {})
+    dispatch('NotificationsModule/addNotification', {type: "success", message: "Vous etes connecté (test)"}, {root: true})
+    return;
   }
 }
 
-export const LoginModule: Module<LoginState, RootState> = {
+export const LoginModule: Module<ILoginState, RootState> = {
   state,
   getters,
   mutations,
-  actions
+  actions,
+  namespaced: true
 }

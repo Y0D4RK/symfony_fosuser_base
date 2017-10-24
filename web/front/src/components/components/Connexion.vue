@@ -1,14 +1,20 @@
 <template>
-
   <div>
-    <Modal :show='show' @close='closeModal()' :width='350'>
+    <Modal :show='show' @close='closeModal()' :width='400'>
       <span slot='header'>Connexion</span>
-      <div slot='content'>
-        <FormText :required='true' type='email' v-model='form.login' :$v='$v.form.login' @input='$v.form.login.$touch()'/>
-
-        Login: <pre>{{form.login}}</pre>
+      <div slot='content' style='padding: 10px 30px 0px 30px'>
+        <FormText :required='true' type='email' :error='true' placeholder='Adresse mail'
+                  v-model='LoginForm.login' :$v='$v.LoginForm.login' @input='$v.LoginForm.login.$touch()'/>
+        <FormText :required='true' type='password' :error='false' placeholder='Mot de passe'
+                  v-model='LoginForm.password' :$v='$v.LoginForm.password' @input='$v.LoginForm.password.$touch()'/>
+        <CheckBox v-model='LoginForm.souvenir' label='Se souvenir de moi' name="souvenir" />
+        
+        <!-- <pre>{{$v.form}}</pre> -->
       </div>
-      <div class='footer'></div>
+      <template slot='footer'>
+        <FormButton @click='closeModal()'>Annuler</FormButton>
+        <FormButton @click='submitForm()' :submitting='submitting' color='blue'>Valider</FormButton>
+      </template>
     </Modal>
   </div>
   
@@ -17,34 +23,52 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import { Prop, Watch } from "vue-property-decorator";
-import { State, Action, Getter, Mutation } from "vuex-class";
+import { Prop } from "vue-property-decorator";
+import { Mutation, Action, namespace } from "vuex-class";
 
-import { Modal, FormText } from "@components";
-import { required, email } from 'vuelidate/lib/validators'
+import { Modal, FormText, CheckBox, FormButton } from "@components";
+import { timeout } from '@methods';
+import { required, email } from 'vuelidate/lib/validators';
+
+const LoginActions = namespace('LoginModule', Action);
+const NotifAction = namespace('NotificationsModule', Action);
 
 @Component({
   name: "Connexion",
   components: {
-    Modal, FormText
+    Modal, FormText, CheckBox, FormButton
   },
   validations: {
-    form: {
+    LoginForm: {
       login: {required, email},
-      password: required
+      password: {required}
     }
   }
 })
 export default class Connexion extends Vue {
-  public form = {
-    login: '',
-    password:''
-  }
+
+  @LoginActions connexionRequest;
+  @NotifAction addNotification;
 
   @Prop() show: boolean;
-  
+
+  public LoginForm = {
+    login: '',
+    password:'',
+    souvenir: false
+  };
+  public submitting: boolean = false;
+
   closeModal() {
     this.$emit("close");
+  }
+
+  async submitForm(){
+    this.submitting = true;
+    await this.connexionRequest(this.LoginForm);
+    this.submitting = false;
+    
+    
   }
 }
 </script>

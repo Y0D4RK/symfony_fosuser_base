@@ -10,7 +10,7 @@
       <div class='content'>
         <slot name='content'></slot>
       </div>
-      <div class='footer' v-if='footer'>
+      <div class='footer' >
         <slot name='footer'></slot>
       </div>
     </div>
@@ -31,7 +31,6 @@ export default class Modal extends Vue {
   @Prop() show: boolean;
   @Prop({required: false}) height: number;
   @Prop({required: false}) width: number;
-  @Prop({required: false, default: true}) footer: boolean;
 
   closeModal(){
     this.$emit('close');
@@ -75,7 +74,7 @@ export default class Modal extends Vue {
       height: 40px;
       padding-left: 10px;
       font-weight: bold;
-      line-height: 40px;
+      justify-content: center;
       border-bottom: 1px solid $w230;
 
     }
@@ -90,9 +89,13 @@ export default class Modal extends Vue {
 
     div.footer {
       display: flex;
-      flex-flow: row wrap;
-      flex: 1 1 auto;
-      overflow: auto;
+      flex-flow: row nowrap;
+      flex: 0 0 auto;
+      padding: 5px;
+      height: 50px;
+      align-items: center;
+      align-content: center;
+      justify-content: flex-end;
     }
 
   }

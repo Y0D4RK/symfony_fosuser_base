@@ -1,1 +1,2 @@
-export * from './LoginState.d'
+export * from './LoginState.d';
+export * from './Notifications.d'

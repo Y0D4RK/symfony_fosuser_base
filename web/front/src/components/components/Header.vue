@@ -7,19 +7,19 @@
         </router-link>
         <ul class='nav-list'>
           <router-link :to='item.link' v-for="item in nav" :key='item.name'>
-            <li class='route' :class='{active: $route.name == item.name}' :size='26'>
+            <li class='route' :class='{active: $store.state.route.path === item.link}' :size='26'>
               <span>{{item.title}}</span>
             </li>
           </router-link>
         </ul>
         <ul class='login-list'>
-          <template v-if='login.isLoggedIn'>
+          <li class="header-button color">
+            Devenir déménageur
+          </li>
+          <template v-if='loginState.isLoggedIn'>
 
           </template>
           <template v-else>
-            <li class="header-button color">
-              Devenir déménageur
-            </li>
             <li class="header-button" @click='showConnexion()'>
               Connexion
             </li>
@@ -31,7 +31,7 @@
       </nav>
     </header>
   
-  <Connexion :show='ConnexionState' @close='closeConnexion()'></Connexion>
+  <Connexion :show='ConnexionState' v-if='!loginState.isLoggedIn' @close='closeConnexion()'></Connexion>
 
   </div>
 </template>
@@ -39,21 +39,28 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import { Prop, Watch } from "vue-property-decorator";
-import { State, Action, Getter, Mutation, namespace } from "vuex-class";
+import { namespace, Getter, State, Action } from "vuex-class";
 
-import { Filters } from "@utils";
-import { SvgIcon, Connexion, test } from "@components";
+import { uppercase } from "@filters";
+import { ILoginState } from '@types';
+import { timeout } from '@methods';
+import { SvgIcon, Connexion } from "@components";
+
+const LoginGetter = namespace('LoginModule', Getter);
+const NotifAction = namespace('NotificationsModule', Action);
 
 @Component({
   name: "HeaderComponent",
-  components: { Connexion, test },
+  components: { Connexion },
   filters: {
-    uppercase: Filters.uppercase
+    uppercase: uppercase
   }
 })
 export default class HeaderComponent extends Vue {
-  @State login: boolean;
+  @State('LoginModule') loginState: ILoginState;
+  @LoginGetter fullName;
+  @NotifAction addNotification;
+
 
   public ConnexionState: boolean = false;
 
@@ -65,12 +72,16 @@ export default class HeaderComponent extends Vue {
     this.ConnexionState = false;
   }
 
+  // async mounted() {
+  //   await timeout(1000);
+  //   console.log(this)
+  //   this.addNotification({type: "success", message: "Test de notification"});
+  // }
+
   public nav = [
     { title: "Je déménage", name: "moving", link: "/moving" },
     { title: "Les déménageurs", name: "movers", link: "/movers" }
   ];
-
-  mounted() {}
 }
 </script>
 
@@ -135,7 +146,7 @@ header {
           align-items: center;
           align-content: center;
           font-size: 14px;
-          padding: 5px;
+          padding: 7px 5px 5px 5px;
           font-weight: bold;
           margin-right: 5px;
           border-bottom: 3px solid transparent;
@@ -164,7 +175,6 @@ header {
       display: flex;
       flex-flow: row nowrap;
       flex: 1 0 auto;
-      align-self: flex-end;
       justify-content: flex-end;
       padding: 8px 15px 8px 15px;
 
@@ -175,10 +185,10 @@ header {
         align-items: center;
         align-content: center;
         font-size: 14px;
-        padding: 6px 15px 8px 15px;
+        padding: 7px 15px 8px 15px;
         font-weight: bold;
         margin-right: 10px;
-        border-radius: 3px;
+        border-radius: 40px;
         cursor: pointer;
 
         &:not(.color):hover {

@@ -1,8 +1,9 @@
 <template>
   <div id='app'>
-    <HeaderComponent></HeaderComponent>
+    <HeaderComponent/>
+    <Alerts/>
     <transition name='fade' mode='out-in'>
-      <router-view></router-view>
+      <router-view/>
     </transition>
   </div>
 </template>
@@ -19,7 +20,8 @@ import * as Components from '@components';
 
 @Component({
   components: {
-    "HeaderComponent": Components.HeaderComponent
+    "HeaderComponent": Components.HeaderComponent,
+    "Alerts": Components.Alerts
   },
   router,
   store

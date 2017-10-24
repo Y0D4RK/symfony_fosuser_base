@@ -1,3 +1,4 @@
+@import 'fonts';
 @import 'tools';
 @import 'variables';
 @import 'classes';
@@ -21,7 +22,6 @@
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
-  height: 0;
 }
 
 

@@ -1,4 +1,4 @@
-export interface LoginState {
+export interface ILoginState {
   id: number,
   name: string,
   surname: string,
@@ -9,7 +9,7 @@ export interface LoginState {
   reset: () => void
 }
 
-enum MovingStatus {
-  Demenageur,
-  Client
-} 
+export enum MovingStatus {
+  Client,
+  Demenageur
+}

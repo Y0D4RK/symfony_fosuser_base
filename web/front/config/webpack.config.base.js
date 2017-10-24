@@ -21,9 +21,11 @@ let config = {
       '@src': helpers.root('src'),
       '@icons': helpers.root('src/assets/icons'),
       '@images': helpers.root('src/assets/images'),
-      '@fonts': helpers.root('src/fonts'),
+      '@fonts': helpers.root('src/assets/fonts'),
       '@views': helpers.root('src/components/views/index.ts'),
-      '@utils': helpers.root('src/utils/index.ts'),
+      '@validators': helpers.root('src/utils/validators.ts'),
+      '@methods': helpers.root('src/utils/methods.ts'),
+      '@filters': helpers.root('src/utils/filters.ts'),
       '@types': helpers.root('src/typings/index.ts'),
       '@store': helpers.root('src/store/index.ts'),
     }

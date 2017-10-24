@@ -1,61 +1,9 @@
 @import "variables.scss";
 
-ul#alertsContainer{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  padding: 10px;
-  width: 350px;
-  height: auto;
-  z-index: 2005;
-  display: flex;
-  flex-direction: column-reverse;
-
-  li{
-    position: relative;
-    height: auto;
-    width: 100%;
-    margin-top: 5px;
-    padding: 15px 10px 15px 50px;
-    box-shadow: 0 0 10px rgba(20,20,20,0.2);
-    font-size: 14px;
-    color: $w250;
-    text-align: center;
-    align-content: center;
-    border-radius: 3px;
-    background-color: rgb(60,60,60);
-    line-height: 17px;
-
-    img{
-      position: absolute;
-      top: 50%;
-      @include translateY(-50%);
-      left: 10px;
-    }
-
-    &.ng-enter {
-      @include transition(left 0.3s);
-      left: -100%;
-    }
-
-    &.ng-enter.ng-enter-active {
-      left: 0;
-    }
-
-    &.ng-leave {
-      @include transition(opacity 0.6s);
-      opacity: 1;
-    }
-
-    &.ng-leave.ng-leave-active {
-      opacity: 0;
-    }
-  }
-}
-
 
 .input-container{
   display: flex;
+  position: relative;
   flex-direction: row wrap;
 
   .errorMessage{
@@ -78,35 +26,33 @@ ul#alertsContainer{
 
 .input-form {
   position: relative;
-  border: 1px solid $w200;
-  background-color: white;
-  color: $mainColor;
-  vertical-align: middle;
-  height: 35px;
+  flex: 1 1 auto;
+  background-color: $w230;
+  border: 1px solid transparent;
+  color: $g40;
+  height: 40px;
   padding: 5px 30px 5px 9px;
   width: 100%;
   margin: 5px 0 5px 0;
   line-height: 30px;
-  font-size: 13px;
-  border-radius: 4px;
+  font-size: 15px;
+  border-radius: 3px;
 
   &:focus{
-    border: 1px solid darken($w200, 20%);
+    background-color: $w225;
     & + .input-form-result{
       display: block;
     }
   }
 
-  &:required{
-    box-shadow: none;
-  }
-
-  &.formError{
-    border-color: $red1;
-  }
-  &.formValid{
-    border-color: $green3;
-  }
+  // &.formError{
+  //   // border-color: $red1;
+  //   // background-color: $w245;
+  // }
+  // &.formValid{
+  //   // border-color: $mainStyle;
+  //   // background-color: $w245;
+  // }
 }
 
 .form-valid-icon{
@@ -120,10 +66,10 @@ ul#alertsContainer{
   cursor: pointer;
 
   &.form-valid{
-    background-image: url('~@icons/form-valid-green.svg');
+    background-image: url('~@icons/form-valid.svg');
   }
   &.form-invalid{
-    background-image: url('~@icons/form-invalid-red.svg');
+    background-image: url('~@icons/form-invalid.svg');
   }
   &.form-required{
     background-image: url('~@icons/form-required.svg');

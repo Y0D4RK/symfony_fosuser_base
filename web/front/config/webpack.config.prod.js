@@ -24,7 +24,6 @@ webpackConfig.module.rules = [...webpackConfig.module.rules,
           loader: 'css-loader',
           options: {
             minimize: true,
-            sourceMap: true,
             importLoaders: 2
           }
         },
@@ -37,9 +36,9 @@ webpackConfig.module.rules = [...webpackConfig.module.rules,
         {
           loader: 'sass-loader',
           options: {
-            outputStyle: 'expanded',
-            sourceMap: true,
-            sourceMapContents: true
+            outputStyle: 'compressed',
+            sourceMap: false,
+            sourceMapContents: false
           }
         }
       ],

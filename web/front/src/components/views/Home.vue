@@ -12,16 +12,12 @@
 import Vue from 'vue'
 import Component from 'vue-class-component';
 import { State, Getter, Mutation } from 'vuex-class';
-import { Prop, Watch } from 'vue-property-decorator';
 
 @Component({
   name: 'Home',
 })
 export default class Home extends Vue {
 
-  mounted() {
-    console.log('home');
-  }
 }
 </script>
 
