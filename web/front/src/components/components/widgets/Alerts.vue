@@ -24,9 +24,7 @@ import {State, namespace } from "vuex-class";
 const NotifState = namespace('NotificationsModule', State);
 
 
-@Component({
-  name: 'Alerts',
-})
+@Component({})
 export default class Alerts extends Vue {
 
   @NotifState notificationList;

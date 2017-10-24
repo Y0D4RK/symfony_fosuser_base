@@ -10,6 +10,7 @@ const Rooter = new VueRouter({
   routes: [
     { path: '/', name: 'Accueil', alias: 'home', component: Views.Home},
     { path: '/moving', name: 'Je déménage', alias: 'moving', component: Views.Moving},
+    { path: '/inscription', name: 'Inscription', alias: 'moving', component: Views.Inscription},
     { path: '/movers', name: 'Les déménageurs', alias: 'movers', component: Views.Movers},    
     { path: '*', component: Views.error404 }
   ]

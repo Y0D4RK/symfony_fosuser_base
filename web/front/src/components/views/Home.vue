@@ -13,9 +13,7 @@ import Vue from 'vue'
 import Component from 'vue-class-component';
 import { State, Getter, Mutation } from 'vuex-class';
 
-@Component({
-  name: 'Home',
-})
+@Component({})
 export default class Home extends Vue {
 
 }

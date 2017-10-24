@@ -1,9 +1,7 @@
 <template lang='html'>
   <transition name='slide'>
     <div class='view'>
-      <section>
         <h1>Movers</h1>
-      </section>
     </div>
   </transition>
 </template>
@@ -13,9 +11,7 @@ import Vue from 'vue'
 import Component from 'vue-class-component';
 import { State, Getter, Mutation } from 'vuex-class';
 
-@Component({
-  name: 'Movers',
-})
+@Component({})
 export default class Movers extends Vue {
 
 }

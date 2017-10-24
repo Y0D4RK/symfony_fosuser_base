@@ -23,9 +23,11 @@
             <li class="header-button" @click='showConnexion()'>
               Connexion
             </li>
-            <li class="header-button">
-              Inscription
-            </li>
+            <router-link to='/inscription'>
+              <li class="header-button">
+                Inscription
+              </li>
+            </router-link>
           </template>
         </ul>
       </nav>
@@ -50,7 +52,6 @@ const LoginGetter = namespace('LoginModule', Getter);
 const NotifAction = namespace('NotificationsModule', Action);
 
 @Component({
-  name: "HeaderComponent",
   components: { Connexion },
   filters: {
     uppercase: uppercase
