@@ -1,13 +1,71 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.ico') }}" />
+
+    <title>{% block title %}Club des critiques{% endblock %}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Icon fav. -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <!-- Fichier css -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/stylebis.css') }}" rel="stylesheet" type="text/css" >
+
+</head>
+
+<body>
+
+<div id="wrap">
+    {% include './includes/header.html.twig' %}
+
+    <div id="wrapper">
+
+        {# popup info #}
+        {% for flash_message in app.session.flashBag.get('notice-success') %}
+            <div class="panel panel-default panel-notice">
+                <span class="success"> {{ flash_message }} </span>
+            </div>
+        {% endfor %}
+
+        {% for flash_message in app.session.flashBag.get('notice-error') %}
+            <div class="panel panel-default panel-notice">
+                <span class="erreur"> {{ flash_message }} </span>
+            </div>
+        {% endfor %}
+
+        {# block content #}
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+
+    {# footer #}
+    {% include "./includes/footer.html.twig" %}
+
+</div>
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+{% endblock %}
+
+</body>
+
 </html>

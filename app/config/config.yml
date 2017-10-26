@@ -2,15 +2,17 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@UserBundle/Resources/config/services.yml" }
+    - { resource: "@AppBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: ~
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -63,7 +65,47 @@ doctrine:
 # Swiftmailer Configuration
 swiftmailer:
     transport: '%mailer_transport%'
+    encryption: 'ssl'
+    port:      '465'
     host: '%mailer_host%'
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+# FOSuser Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: UserBundle\Entity\User
+    from_email:
+        address: "esgigroupeone@gmail.com"
+        sender_name: "esgigroupeone@gmail.com"
+    registration:
+        confirmation:
+            enabled: true
+            template: FOSUserBundle:Registration:email.txt.twig
+            from_email:
+                address: "esgigroupeone@gmail.com"
+                sender_name: "Moving Mate"
+    resetting:
+        email:
+            template:   email/password_resetting.email.twig
+            from_email:
+                address: "esgigroupeone@gmail.com"
+                sender_name: "Moving Mate"
+    service:
+        mailer: fos_user.mailer.twig_swift
+    profile:
+        form:
+          type: UserBundle\Form\UserEditType
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        avatar_image:
+            uri_prefix:         /upload/avatar
+            upload_destination: %kernel.root_dir%/../web/upload/avatar
+            namer:              app.avatar.namer
+            delete_on_update:   true
+            delete_on_remove:   true
+            inject_on_load:     true
