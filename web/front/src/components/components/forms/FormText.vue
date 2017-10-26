@@ -1,15 +1,15 @@
 <template>
-    <div>
+    <div class="input-box">
       <div class="input-container">
         <input ref='input' class='input-form'
                 :type='type'
                 :value='value'
-                :class='{
+                :class='[{
                   formError: (!valid && dirty && error),
                   formValid: (valid && dirty && error),
                   icon: icon,
-                  big: !!big
-                }'
+                  big: !!big,
+                }, design]'
                 :placeholder="placeholder"
                 :required='required'
                 :disabled='disabled'
@@ -25,10 +25,10 @@
         <div v-if='!valid && dirty && error' class="form-valid-icon form-invalid"></div>
         <div v-if='!dirty && $v.required' class="form-valid-icon form-required"></div>
 
-        <div class='popup-message' v-if='description || $v.$error' 
+        <div class='popup-message' v-if='(description || $v.$error) && error' 
             :style='popupPosition'>
-          <span v-if='description && !$v.$error'>{{description}}</span>
-          <ul v-if='!$v.error' class='error'>
+          <span v-if='description && !$v.$error' class='description'>{{description}}</span>
+          <ul v-if='!$v.error && dirty && error' class='error'>
             <li v-for='(key, index) in filterErrors' :key='key'>
               • {{errorMessages[key]}}
             </li>
@@ -68,6 +68,7 @@ export default class FormText extends Vue {
   @Prop({required: false}) icon: string;
   @Prop({required: false, default: true}) inline: boolean;
   @Prop({required: false}) big: boolean;
+  @Prop({required: false}) design: string;
   @Prop({required: false}) $v: IValidator;
 
 
@@ -141,15 +142,21 @@ export default class FormText extends Vue {
 
 <style lang='scss'>
 
+.input-box {
+  display: block;
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 250px;
+  max-width: 450px;
+}
+
 
 .input-container{
   display: flex;
   position: relative;
   flex-flow: row wrap;
   justify-content: center;
-  flex: 1 1 auto;
   margin: 5px;
-  min-width: 250px;
 
   .input-icon{
     position: absolute;
@@ -167,7 +174,6 @@ export default class FormText extends Vue {
 
   .input-form {
     position: relative;
-    flex: 1 1 auto;
     background-color: $w230;
     border: 1px solid transparent;
     color: $g60;
@@ -182,16 +188,9 @@ export default class FormText extends Vue {
     &.big{
       height: 50px;
       font-size: 18px;
+      border-radius: 5px;
     }
 
-    &.formValid + .input-icon svg {
-      fill: $mainStyle;
-    }
-
-    &.formError + .input-icon svg {
-      fill: $red1;
-    }
-  
     &:focus{
       background-color: $w225;
       &~ .input-icon svg {
@@ -202,14 +201,27 @@ export default class FormText extends Vue {
       }
     }
 
+    &.formValid ~ .input-icon svg {
+      fill: $mainStyle;
+    }
+
+    &.formError ~ .input-icon svg {
+      fill: $red1;
+    }
+
     &.icon{
       padding-left: 40px;
+    }
+
+    &.white {
+      background-color: white;
+      box-shadow: 0 0 10px $ombre;
     }
   }
 
   .popup-message {
     position: fixed;
-    background-color: $g60;
+    background-color: $g70;
     border-radius: 5px;
     box-shadow: 0 0 10px $ombre;
     padding: 10px;
@@ -221,6 +233,11 @@ export default class FormText extends Vue {
     font-size: 13px;
     display: none;
     flex-flow: column wrap;
+
+    .description {
+      align-self: center;
+      text-align: center;
+    }
 
     .error{
       position: relative;
@@ -240,7 +257,7 @@ export default class FormText extends Vue {
       height: 0;
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
-      border-top: 10px solid $g60;
+      border-top: 10px solid $g70;
       filter: drop-shadow(0px 6px 4px rgba(50,50,50, 0.1));
     }
   }
