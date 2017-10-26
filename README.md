@@ -1,72 +1,44 @@
-Symfony Standard Edition
+Moving Mate - Web App
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+Bienvenue à Moving Mate app - Créé avec Symfony 3.3.10.
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+Quoi de neuf ?
+-------------
 
-What's inside?
---------------
+Symfony contient un certain nombre de bundle de base, à cela s'ajoute pour le moment les bundles ci-dessous:
 
-The Symfony Standard Edition is configured with the following defaults:
+- FosUserBundle (packagist: gestion des user),
+- UserBundle (perso: il override FosUser),
+- VichUploader (packagist: gestion upload image),
+- FosJsRouting (packagist: gestion des routes js) 
+- ... d'autre vont s'ajouter (JWT, fosrest, ...)
 
-  * An AppBundle you can use to start coding;
+Executer l'app
+-------------
 
-  * Twig as the only configured template engine;
+1) Cloner le projet puis entrer dans le projet:
 
-  * Doctrine ORM/DBAL;
+> git clone git@gitlab.com:victorgarciaparis13/MovingMate.git
 
-  * Swiftmailer;
+2) Entrer dans le dossier du projet :
 
-  * Annotations enabled for everything.
+> cd MovingMate
 
-It comes pre-configured with the following bundles:
+3) Executer l'installation des bundles via composer puis renseigner les informations :
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+> composer install
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+4) Lancer les commandes suivantes: 
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+> alias sf3='php bin/console'
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+> sf3 doctrine:schema:update --force {sf3 doctrine:schema:create}
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+> sf3 assets:install web
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+> sf3 server:run
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+5) Vous pouvez vous connecter à l'adresse suivante **localhost:8000**
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
 
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev env) - Adds code generation
-    capabilities
-
-  * [**WebServerBundle**][14] (in dev env) - Adds commands for running applications
-    using the PHP built-in web server
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/3.3/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.3/doctrine.html
-[8]:  https://symfony.com/doc/3.3/templating.html
-[9]:  https://symfony.com/doc/3.3/security.html
-[10]: https://symfony.com/doc/3.3/email.html
-[11]: https://symfony.com/doc/3.3/logging.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
-[14]: https://symfony.com/doc/current/setup/built_in_web_server.html
