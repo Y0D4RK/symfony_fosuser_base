@@ -223,7 +223,7 @@ export default class FormText extends Vue {
     position: fixed;
     background-color: $g70;
     border-radius: 5px;
-    box-shadow: 0 0 10px $ombre;
+    box-shadow: 0 0 10px transparentize($g0, 0.7);
     padding: 10px;
     color: white;
     font-weight: bold;
@@ -244,7 +244,7 @@ export default class FormText extends Vue {
       color: $red1;
     }
     .info {
-      color: #ea730b;
+      color: $yellow1;
     }
 
     .triangle{

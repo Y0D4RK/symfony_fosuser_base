@@ -2,6 +2,7 @@
   <transition name='slide'>
     <div class='view'>
       <section class='image-home'>
+        <div class='background-mask'></div>
         <SearchComponent/>
       </section>
 
@@ -35,12 +36,21 @@ section{
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
+  position: relative;
 }
 
 .image-home {
   background-image: url('~@images/home_image.jpg');
+  position: relative;
   height: 500px;
   @include bg-center;
+
+  .background-mask {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: transparentize($g20, 0.7);
+  }
 }
 
 
