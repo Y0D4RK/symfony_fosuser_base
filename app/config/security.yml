@@ -18,34 +18,36 @@ security:
 
     # parefeu - gere le filtrage du user, donc son authentification
     firewalls:
-        dev: # aucune sÃ©curitÃ© pour la dev lorsque nous accÃ¨dons Ã  ->
+
+        dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        prod: # aucune sÃ©curitÃ© pour la dev lorsque nous accÃ¨dons Ã  ->
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+        main:
+            anonymous: ~
+
+        login:
+            pattern:  ^/login
+            stateless: true
+            anonymous: true
+            provider: fos_userbundle
+            form_login:
+                check_path:               /login_check
+                username_parameter:       email
+                password_parameter:       password
+                success_handler:          lexik_jwt_authentication.handler.authentication_success
+                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+                require_previous_session: false
 
         main: # identique au nom defini dans config.yml
             # pattern : url qui declenche la mise en oeuvre du parefeu '^/' -> tous ce qui commence par un / mobilise le parefeu
             pattern: ^/
-            # IMPORTANT : car indique qu'on utilise un formulaire login pour s'authentifier
-            form_login:
-                # sans bundle, nous declarons la page de login et la page de redirection
-                # mais nous utilisons FosUserBundle
-                provider: fos_userbundle
-                default_target_path: /
-                # class qui gÃ©nÃ¨re le token
-                csrf_token_generator: security.csrf.token_manager
-                # if you are using Symfony < 2.8, use the following config instead:
-                # csrf_provider: form.csrf_provider
-                always_use_default_target_path: true
-                use_referer: true
+            provider: fos_userbundle
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
 
-            # permet la deconnexion
-            logout:       true
-            # permet au anonyme de bÃ©nÃ©ficier du parefeu
-            anonymous:    true
 
     # liste d'url, qui vont repondre Ã  des conditions d'accÃ¨s en fonction du role du user - connectÃ© ou non connectÃ©
     access_control:

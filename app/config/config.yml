@@ -72,7 +72,7 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
 
-# FOSuser Configuration
+# FOSUSER CONFIGURATION
 fos_user:
     db_driver: orm
     firewall_name: main
@@ -80,25 +80,9 @@ fos_user:
     from_email:
         address: "esgigroupeone@gmail.com"
         sender_name: "esgigroupeone@gmail.com"
-    registration:
-        confirmation:
-            enabled: true
-            template: FOSUserBundle:Registration:email.txt.twig
-            from_email:
-                address: "esgigroupeone@gmail.com"
-                sender_name: "Moving Mate"
-    resetting:
-        email:
-            template:   email/password_resetting.email.twig
-            from_email:
-                address: "esgigroupeone@gmail.com"
-                sender_name: "Moving Mate"
-    service:
-        mailer: fos_user.mailer.twig_swift
-    profile:
-        form:
-          type: UserBundle\Form\UserEditType
 
+
+# VICH UPLOADER CONFIGURATION
 vich_uploader:
     db_driver: orm
     mappings:
@@ -109,3 +93,12 @@ vich_uploader:
             delete_on_update:   true
             delete_on_remove:   true
             inject_on_load:     true
+
+
+# LEXIK JWT CONFIGURATION
+lexik_jwt_authentication:
+    private_key_path: '%jwt_private_key_path%'
+    public_key_path:  '%jwt_public_key_path%'
+    pass_phrase:      '%jwt_key_pass_phrase%'
+    token_ttl:        '%jwt_token_ttl%'
+

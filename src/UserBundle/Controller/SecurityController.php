@@ -10,7 +10,7 @@ class SecurityController extends BaseController
     public function loginAction(Request $request)
     {
         if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('homepage');
         }else{
             $response = parent::loginAction($request);
             return $response;
